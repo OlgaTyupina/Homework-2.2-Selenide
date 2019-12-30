@@ -1,5 +1,6 @@
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -14,6 +15,7 @@ class CardDeliveryTest {
         open("http://localhost:9999");
         SelenideElement form = $ ("form.form");
         form.$("[data-test-id=city] input").setValue("Москва");
+        form.$("[data-test-id=date] input").sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
         final String FORMAT_DATE = "dd.MM.yyyy";
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(FORMAT_DATE);
         LocalDate localDate = LocalDate.now();
